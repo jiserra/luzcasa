@@ -30,7 +30,7 @@ function toggleLuz() {
 }
 
 // Obtener el estado real del relay al inicio
-$.get( "test.php", function( data ) {
+$.get("data.php", function( data ) {
   if(data.estado===1) {
     estado = false;
   } else {
