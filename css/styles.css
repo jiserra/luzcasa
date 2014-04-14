@@ -118,3 +118,6 @@ button {
   button:active {
     background-color: #fff;
     color: #000; }
+
+#switch {
+  display: none; }

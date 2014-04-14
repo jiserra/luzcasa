@@ -29,17 +29,21 @@ function toggleLuz() {
   }
 }
 
-// Obtener el estado real del relay al inicio
-$.get("data.php", function( data ) {
-  if(data.estado===1) {
-    estado = false;
-  } else {
-    estado = true;
-  }
-  paintUi(estado);
-});
 
 $(function () {
+  $('#luz').addClass('loading');
+  // Obtener el estado real del relay al inicio
+  $.get("data.php", function( data ) {
+    if(data==="1") {
+      estado = false;
+    } else {
+      estado = true;
+    }
+    paintUi(estado);
+    $('#luz').removeClass('loading');
+    $('#switch').show();
+  });
+
   $('#switch').on('click', function() {
       toggleLuz();
   });
