@@ -6,6 +6,8 @@
   <link rel="stylesheet" href="css/styles.css">
   <script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
   <script src="js/scripts.js"></script>
+  <link rel="apple-touch-icon" sizes="120x120" href="touch-icon-iphone-retina.png">
+  <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
