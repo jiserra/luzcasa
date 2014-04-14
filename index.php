@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <title>Luz de casa</title>
   <link rel="stylesheet" href="css/styles.css">
-  <script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+  <script src="js/jquery.min.js"></script>
   <script src="js/scripts.js"></script>
   <link rel="apple-touch-icon" sizes="120x120" href="touch-icon-iphone-retina.png">
   <meta name="apple-mobile-web-app-capable" content="yes" />
