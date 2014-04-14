@@ -2,10 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Encender Luz</title>
+  <title>Luz de casa</title>
   <link rel="stylesheet" href="css/styles.css">
   <script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
   <script src="js/scripts.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
   <?php 
