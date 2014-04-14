@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" manifest="cache.manifest">
 <head>
   <meta charset="UTF-8">
   <title>Luz de casa</title>
