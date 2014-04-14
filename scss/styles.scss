@@ -1,0 +1,57 @@
+@import "bourbon";
+@import "../bower_components/reset-scss/reset";
+
+@include keyframes(pulse) {
+  0% {
+    background-color: rgba(#f00, 0.2);
+  }
+  50% {
+    background-color: rgba(#f00, 1);
+  }
+  100% {
+    background-color: rgba(#f00, 0.2);
+  }
+}
+
+body {
+  background-color: #000;
+}
+
+$radius: 150px;
+.luz {
+  width: $radius;
+  height: $radius;
+  border-radius: $radius;
+  border: 4px solid #ccc;
+  margin: 3em auto;
+}
+.encendida {
+  border-color: #fff;
+  background-color: #ff0;
+  box-shadow: 0 0 35px 5px #ff0;
+}
+
+.loading {
+  @include animation-name(pulse);
+  @include animation-duration(1s);
+  @include animation-iteration-count(infinite);
+}
+
+button {
+  @include appearance("none");
+  border: 2px solid #fff;
+  padding: 1em 2em;
+  text-transform: uppercase;
+  background-color: #000;
+  color: #fff;
+  border-radius: 3px;
+  font-family: "Helvetica Neue";
+  font-weight: bold;
+  font-size: 1.5em;
+  margin: 3em auto;
+  display: block;
+  &:active {
+    background-color: #fff;
+    color: #000;
+  }
+}
