@@ -3,10 +3,10 @@ var estado = false;
 function paintUi (estado) {
   if(!estado) {
     $('#luz').removeClass('encendida');
-    $(this).text('Encender');
+    $('#switch').text('Encender');
   } else {
     $('#luz').addClass('encendida');
-    $(this).text('Apagar');
+    $('#switch').text('Apagar');
   }
 }
 
@@ -22,7 +22,7 @@ function toggleLuz() {
   } else {
     //La luz esta encendida, quiero apagarla
     $("#respuesta").load("toggle.php", {apagar: true }, function() {
-        $('#luz').removeClass('loading');    
+        $('#luz').removeClass('loading');
         estado = false;
         paintUi(estado);
     });
