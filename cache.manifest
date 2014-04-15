@@ -1,6 +1,9 @@
 CACHE MANIFEST
-  # v.2
+  # v.3
  
   css/styles.css
   js/scripts.js
   js/jquery.min.js
+
+NETWORK:
+  *
