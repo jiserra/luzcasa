@@ -114,7 +114,8 @@ button {
   font-weight: bold;
   font-size: 1.5em;
   margin: 3em auto;
-  display: block; }
+  display: block;
+  -webkit-tap-highlight-color: transparent; }
   button:active {
     background-color: #fff;
     color: #000; }

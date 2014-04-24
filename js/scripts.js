@@ -1,3 +1,14 @@
+var supportsTouch = false;
+var pointerEvent = 'click';
+if ('ontouchstart' in window) {
+    //iOS & android
+    supportsTouch = true;
+    pointerEvent = 'touchstart';
+} else if(window.navigator.msPointerEnabled) {
+    //Win8
+    supportsTouch = true;
+}
+
 var estado = false;
 
 function paintUi (estado) {
@@ -44,7 +55,7 @@ $(function () {
     $('#switch').show();
   });
 
-  $('#switch').on('click', function() {
+  $('#switch').on(pointerEvent, function() {
       toggleLuz();
   });
 });
