@@ -19,7 +19,6 @@
   ?>
   <div id="luz" class="luz"></div>
   <button id="switch">|</button>
-  <button id="clima">Clima</button>
   <div id="respuesta"></div>
 </body>
 </html>

@@ -59,8 +59,4 @@ $(function () {
       toggleLuz();
   });
 
-  $('#clima').on(pointerEvent, function() {
-      $("#respuesta").load("asistente.php");
-  });
-
 });
