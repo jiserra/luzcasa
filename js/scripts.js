@@ -14,10 +14,10 @@ var estado = false;
 function paintUi (estado) {
   if(!estado) {
     $('#luz').removeClass('encendida');
-    $('#switch').text('Encender');
+    //$('#switch').text('|');
   } else {
     $('#luz').addClass('encendida');
-    $('#switch').text('Apagar');
+    //$('#switch').text('O');
   }
 }
 
@@ -58,4 +58,9 @@ $(function () {
   $('#switch').on(pointerEvent, function() {
       toggleLuz();
   });
+
+  $('#clima').on(pointerEvent, function() {
+      $("#respuesta").load("asistente.php");
+  });
+
 });
