@@ -13,9 +13,7 @@
 </head>
 <body>
   <?php
-    //La luz esta conectada en la 17
-    exec("gpio -g mode 18 out");
-    exec("gpio -g mode 17 out");
+    exec("gpio -g mode 23 out");
   ?>
   <div id="luz" class="luz"></div>
   <button id="switch">|</button>
