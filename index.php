@@ -13,7 +13,7 @@
 </head>
 <body>
   <?php
-    //La luz esta conectada en la 18
+    //La luz esta conectada en la 17
     exec("gpio -g mode 18 out");
     exec("gpio -g mode 17 out");
   ?>
