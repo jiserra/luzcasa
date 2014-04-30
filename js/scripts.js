@@ -24,7 +24,7 @@ function paintUi (estado, tipo) {
 function toggleEstado(estado, tipo) {
   $('#' + tipo).addClass('loading');
 
-  if(!estado) {
+  if(estado===false) {
     //La luz esta apagada, quiero encenderla
     $("#respuesta").load("toggle.php", {estado: 'prender', tipo: tipo }, function() {
         paintUi(true, tipo);
