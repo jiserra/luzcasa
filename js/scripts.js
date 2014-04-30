@@ -9,11 +9,6 @@ if ('ontouchstart' in window) {
     supportsTouch = true;
 }
 
-var estado = [];
-
-estado['luz'] = false;
-estado['audio'] = false;
-
 function paintUi (estado, tipo) {
   $('#' + tipo).removeClass('loading');
   if(!estado) {
@@ -24,57 +19,58 @@ function paintUi (estado, tipo) {
 }
 
 function toggleEstado(estado, tipo) {
-  $('#' + this.tipo).addClass('loading');
+  $('#' + tipo).addClass('loading');
 
   if(estado===false) {
     //Esta apagado, quiero encenderlo
-    $("#respuesta").load("toggle.php", {estado: 'prender', tipo: this.tipo }, function() {
-        paintUi(true, this.tipo);
-        estado[this.tipo] = true;
+    $("#respuesta").load("toggle.php", {estado: 'prender', tipo: tipo }, function() {
+        paintUi(true, tipo);
       }
     );
   } else {
     //Esta encendido, quiero apagarlo
-    $("#respuesta").load("toggle.php", {estado: 'apagar', tipo: this.tipo }, function() {
-        paintUi(false, this.tipo);
-        estado[this.tipo] = false;
+    $("#respuesta").load("toggle.php", {estado: 'apagar', tipo: tipo }, function() {
+        paintUi(false, tipo);
       }
     );
   }
 }
 
+function getState(tipo) {
+  if(tipo==='luz') {
+    $.get("dataLuz.php", function( data ) {
+      if(data==="1") {
+        return false;
+      } else {
+        return true;
+      }
+    });
+  } else {
+    $.get("dataAudio.php", function( data ) {
+      if(data==="1") {
+        return false;
+      } else {
+        return true;
+      }
+    });
+  }
+}
 
 $(function () {
   $('.luz').addClass('loading');
-  // Obtener el estado real del relay de la LUZ al inicio
-  $.get("dataLuz.php", function( data ) {
-    if(data==="1") {
-      estado['luz'] = false;
-    } else {
-      estado['luz'] = true;
-    }
-    paintUi(estado['luz'], 'luz');
-    $('#luz').removeClass('loading');
-    $('#switchLuz').show();
-  });
-  // Obtener el estado real del relay del AUDIO al inicio
-  $.get("dataAudio.php", function( data ) {
-    if(data==="1") {
-      estado['audio'] = false;
-    } else {
-      estado['audio'] = true;
-    }
-    paintUi(estado['audio'], 'audio');
-    $('#audio').removeClass('loading');
-    $('#switchAudio').show();
-  });
+
+  paintUi(getState('luz'), 'luz');
+  $('#switchLuz').show();
+
+  paintUi(getState('audio'), 'audio');
+  $('#switchAudio').show();
 
   $('#switchLuz').on(pointerEvent, function() {
-    toggleEstado(estado['luz'], 'luz');
+    toggleEstado(getState('luz'), 'luz');
   });
 
   $('#switchAudio').on(pointerEvent, function() {
-    toggleEstado(estado['audio'], 'audio');
+    toggleEstado(getState('audio'), 'audio');
   });
 
 });
