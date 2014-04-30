@@ -18,59 +18,56 @@ function paintUi (estado, tipo) {
   }
 }
 
-function toggleEstado(estado, tipo) {
+function toggleEstado(tipo) {
   $('#' + tipo).addClass('loading');
 
-  if(estado===false) {
+  $.get('data-' + tipo + '.php').done(function( data ) {
     //Esta apagado, quiero encenderlo
-    $("#respuesta").load("toggle.php", {estado: 'prender', tipo: tipo }, function() {
+    if(data==="1") {
+      $("#respuesta").load("toggle.php", {estado: 'prender', tipo: tipo }, function() {
         paintUi(true, tipo);
-      }
-    );
-  } else {
-    //Esta encendido, quiero apagarlo
-    $("#respuesta").load("toggle.php", {estado: 'apagar', tipo: tipo }, function() {
+      });
+    } else {
+      $("#respuesta").load("toggle.php", {estado: 'apagar', tipo: tipo }, function() {
         paintUi(false, tipo);
-      }
-    );
-  }
-}
-
-function getState(tipo) {
-  if(tipo==='luz') {
-    $.post("dataLuz.php", function( data ) {
-      if(data==="1") {
-        return false;
-      } else {
-        return true;
-      }
-    });
-  } else {
-    $.post("dataAudio.php", function( data ) {
-      if(data==="1") {
-        return false;
-      } else {
-        return true;
-      }
-    });
-  }
+      });
+    }
+  });
 }
 
 $(function () {
   $('.luz').addClass('loading');
 
-  paintUi(getState('luz'), 'luz');
-  $('#switchLuz').show();
+  // Pintar la UI del principio
 
-  paintUi(getState('audio'), 'audio');
-  $('#switchAudio').show();
+  $.get("data-luz.php").done(function( data ) {
+    if(data==="1") {
+      //Esta apagada
+      paintUi(false, 'luz');
+    } else {
+      //Esta prendida
+      paintUi(true, 'luz');
+    }
+    $('#switchLuz').show();
+  });
+
+  $.get("data-audio.php").done(function( data ) {
+    if(data==="1") {
+      //Esta apagado
+      paintUi(false, 'audio');
+    } else {
+      //Esta prendido
+      paintUi(true, 'audio');
+    }
+    $('#switchAudio').show();
+  });
 
   $('#switchLuz').on(pointerEvent, function() {
-    toggleEstado(getState('luz'), 'luz');
+    toggleEstado('luz');
   });
 
   $('#switchAudio').on(pointerEvent, function() {
-    toggleEstado(getState('audio'), 'audio');
+    toggleEstado('audio');
   });
 
 });
