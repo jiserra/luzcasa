@@ -13,10 +13,19 @@
 </head>
 <body>
   <?php
+    exec("gpio -g write 18 1");
+    exec("gpio -g write 23 1");
+    exec("gpio -g mode 18 out");
     exec("gpio -g mode 23 out");
   ?>
-  <div id="luz" class="luz"></div>
-  <button id="switch">|</button>
+  <div class="contenedor">
+    <div id="luz" class="luz"></div>
+    <button id="switchLuz" class="switch">|</button>
+  </div>
+  <div class="contenedor">
+    <div id="audio" class="luz"></div>
+    <button id="switchAudio" class="switch">|</button>
+  </div>
   <div id="respuesta"></div>
 </body>
 </html>

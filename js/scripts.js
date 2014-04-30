@@ -9,54 +9,76 @@ if ('ontouchstart' in window) {
     supportsTouch = true;
 }
 
-var estado = false;
+var estadoLuz = false;
+var estadoAudio = false;
 
-function paintUi (estado) {
+function paintUi (estado, tipo) {
+  $('#' + tipo).removeClass('loading');
   if(!estado) {
-    $('#luz').removeClass('encendida');
-    //$('#switch').text('|');
+    $('#' + tipo).removeClass('encendida');
   } else {
-    $('#luz').addClass('encendida');
-    //$('#switch').text('O');
+    $('#' + tipo).addClass('encendida');
   }
 }
 
-function toggleLuz() {
-  $('#luz').addClass('loading');
+function toggleEstado(estado, tipo) {
+  $('#' + tipo).addClass('loading');
+
   if(!estado) {
     //La luz esta apagada, quiero encenderla
-    $("#respuesta").load("toggle.php", {encender: true }, function() {
-        $('#luz').removeClass('loading');
-        estado = true;
-        paintUi(estado);
+    $("#respuesta").load("toggle.php", {encender: true, tipo: tipo }, function() {
+        paintUi(true, tipo);
+        return true;
     });
   } else {
     //La luz esta encendida, quiero apagarla
     $("#respuesta").load("toggle.php", {apagar: true }, function() {
-        $('#luz').removeClass('loading');
-        estado = false;
-        paintUi(estado);
+        paintUi(false, tipo);
+        return false;
     });
   }
 }
 
 
 $(function () {
-  $('#luz').addClass('loading');
-  // Obtener el estado real del relay al inicio
-  $.get("data.php", function( data ) {
+  $('.luz').addClass('loading');
+  // Obtener el estado real del relay de la LUZ al inicio
+  $.get("dataLuz.php", function( data ) {
     if(data==="1") {
-      estado = false;
+      estadoLuz = false;
     } else {
-      estado = true;
+      estadoLuz = true;
     }
-    paintUi(estado);
+    paintUi(estadoLuz, 'luz');
     $('#luz').removeClass('loading');
-    $('#switch').show();
+    $('#switchLuz').show();
+  });
+  // Obtener el estado real del relay del AUDIO al inicio
+  $.get("dataAudio.php", function( data ) {
+    if(data==="1") {
+      estadoAudio = false;
+    } else {
+      estadoAudio = true;
+    }
+    paintUi(estadoAudio, 'audio');
+    $('#audio').removeClass('loading');
+    $('#switchAudio').show();
   });
 
-  $('#switch').on(pointerEvent, function() {
-      toggleLuz();
+  $('#switchLuz').on(pointerEvent, function() {
+      if(toggleEstado(estadoLuz, 'luz')) {
+        estadoLuz = true;
+      } else {
+        estadoLuz = false;
+      }
+  });
+
+  $('#switchAudio').on(pointerEvent, function() {
+      if(toggleEstado(estadoAudio, 'audio')) {
+        estadoAudio = true;
+      } else {
+        estadoAudio = false;
+      }
   });
 
 });
