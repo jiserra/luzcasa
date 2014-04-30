@@ -24,20 +24,20 @@ function paintUi (estado, tipo) {
 }
 
 function toggleEstado(estado, tipo) {
-  $('#' + tipo).addClass('loading');
+  $('#' + this.tipo).addClass('loading');
 
   if(estado===false) {
     //Esta apagado, quiero encenderlo
-    $("#respuesta").load("toggle.php", {estado: 'prender', tipo: tipo }, function() {
-        paintUi(true, tipo);
-        estado[tipo] = true;
+    $("#respuesta").load("toggle.php", {estado: 'prender', tipo: this.tipo }, function() {
+        paintUi(true, this.tipo);
+        estado[this.tipo] = true;
       }
     );
   } else {
     //Esta encendido, quiero apagarlo
-    $("#respuesta").load("toggle.php", {estado: 'apagar', tipo: tipo }, function() {
-        paintUi(false, tipo);
-        estado[tipo] = false;
+    $("#respuesta").load("toggle.php", {estado: 'apagar', tipo: this.tipo }, function() {
+        paintUi(false, this.tipo);
+        estado[this.tipo] = false;
       }
     );
   }
