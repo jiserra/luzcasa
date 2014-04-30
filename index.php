@@ -13,8 +13,6 @@
 </head>
 <body>
   <?php
-    exec("gpio -g write 18 1");
-    exec("gpio -g write 23 1");
     exec("gpio -g mode 18 out");
     exec("gpio -g mode 23 out");
   ?>
