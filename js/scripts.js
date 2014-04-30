@@ -9,8 +9,10 @@ if ('ontouchstart' in window) {
     supportsTouch = true;
 }
 
-var estadoLuz = false;
-var estadoAudio = false;
+var estado = [];
+
+estado.luz = false;
+estado.audio = false;
 
 function paintUi (estado, tipo) {
   $('#' + tipo).removeClass('loading');
@@ -25,17 +27,17 @@ function toggleEstado(estado, tipo) {
   $('#' + tipo).addClass('loading');
 
   if(estado===false) {
-    //La luz esta apagada, quiero encenderla
+    //Esta apagado, quiero encenderlo
     $("#respuesta").load("toggle.php", {estado: 'prender', tipo: tipo }, function() {
         paintUi(true, tipo);
-        return true;
+        estado[tipo] = true;
       }
     );
   } else {
-    //La luz esta encendida, quiero apagarla
+    //Esta encendido, quiero apagarlo
     $("#respuesta").load("toggle.php", {estado: 'apagar', tipo: tipo }, function() {
         paintUi(false, tipo);
-        return false;
+        estado[tipo] = false;
       }
     );
   }
@@ -47,40 +49,32 @@ $(function () {
   // Obtener el estado real del relay de la LUZ al inicio
   $.get("dataLuz.php", function( data ) {
     if(data==="1") {
-      estadoLuz = false;
+      estado.luz = false;
     } else {
-      estadoLuz = true;
+      estado.luz = true;
     }
-    paintUi(estadoLuz, 'luz');
+    paintUi(estado.luz, 'luz');
     $('#luz').removeClass('loading');
     $('#switchLuz').show();
   });
   // Obtener el estado real del relay del AUDIO al inicio
   $.get("dataAudio.php", function( data ) {
     if(data==="1") {
-      estadoAudio = false;
+      estado.audio = false;
     } else {
-      estadoAudio = true;
+      estado.audio = true;
     }
-    paintUi(estadoAudio, 'audio');
+    paintUi(estado.audio, 'audio');
     $('#audio').removeClass('loading');
     $('#switchAudio').show();
   });
 
   $('#switchLuz').on(pointerEvent, function() {
-      if(toggleEstado(estadoLuz, 'luz')===true) {
-        estadoLuz = true;
-      } else {
-        estadoLuz = false;
-      }
+    toggleEstado(estado.luz, 'luz');
   });
 
   $('#switchAudio').on(pointerEvent, function() {
-      if(toggleEstado(estadoAudio, 'audio')===true) {
-        estadoAudio = true;
-      } else {
-        estadoAudio = false;
-      }
+    toggleEstado(estado.audio, 'audio');
   });
 
 });
