@@ -38,16 +38,16 @@ function toggleEstado(estado, tipo) {
 
 function getState(tipo) {
   if(tipo==='luz') {
-    $.get("dataLuz.php", function( data ) {
-      if(String(data)==="1") {
+    $.post("dataLuz.php", function( data ) {
+      if(data==="1") {
         return false;
       } else {
         return true;
       }
     });
   } else {
-    $.get("dataAudio.php", function( data ) {
-      if(String(data)==="1") {
+    $.post("dataAudio.php", function( data ) {
+      if(data==="1") {
         return false;
       } else {
         return true;
