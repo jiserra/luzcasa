@@ -39,7 +39,7 @@ function toggleEstado(estado, tipo) {
 function getState(tipo) {
   if(tipo==='luz') {
     $.get("dataLuz.php", function( data ) {
-      if(data==="1") {
+      if(String(data)==="1") {
         return false;
       } else {
         return true;
@@ -47,7 +47,7 @@ function getState(tipo) {
     });
   } else {
     $.get("dataAudio.php", function( data ) {
-      if(data==="1") {
+      if(String(data)==="1") {
         return false;
       } else {
         return true;
