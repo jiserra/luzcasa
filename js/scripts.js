@@ -11,8 +11,8 @@ if ('ontouchstart' in window) {
 
 var estado = [];
 
-estado.luz = false;
-estado.audio = false;
+estado['luz'] = false;
+estado['audio'] = false;
 
 function paintUi (estado, tipo) {
   $('#' + tipo).removeClass('loading');
@@ -49,32 +49,32 @@ $(function () {
   // Obtener el estado real del relay de la LUZ al inicio
   $.get("dataLuz.php", function( data ) {
     if(data==="1") {
-      estado.luz = false;
+      estado['luz'] = false;
     } else {
-      estado.luz = true;
+      estado['luz'] = true;
     }
-    paintUi(estado.luz, 'luz');
+    paintUi(estado['luz'], 'luz');
     $('#luz').removeClass('loading');
     $('#switchLuz').show();
   });
   // Obtener el estado real del relay del AUDIO al inicio
   $.get("dataAudio.php", function( data ) {
     if(data==="1") {
-      estado.audio = false;
+      estado['audio'] = false;
     } else {
-      estado.audio = true;
+      estado['audio'] = true;
     }
-    paintUi(estado.audio, 'audio');
+    paintUi(estado['audio'], 'audio');
     $('#audio').removeClass('loading');
     $('#switchAudio').show();
   });
 
   $('#switchLuz').on(pointerEvent, function() {
-    toggleEstado(estado.luz, 'luz');
+    toggleEstado(estado['luz'], 'luz');
   });
 
   $('#switchAudio').on(pointerEvent, function() {
-    toggleEstado(estado.audio, 'audio');
+    toggleEstado(estado['audio'], 'audio');
   });
 
 });
