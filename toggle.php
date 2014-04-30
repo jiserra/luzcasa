@@ -5,9 +5,10 @@ if($_POST['tipo'] == 'luz') {
 } else {
   $pin = '18';
 }
-if($_POST['encender']) {
+
+if($_POST['estado']=='prender') {
   exec("gpio -g write $pin 0");
-} elseif ($_POST['apagar']) {
+} else {
   exec("gpio -g write $pin 1");
 }
 

@@ -26,16 +26,18 @@ function toggleEstado(estado, tipo) {
 
   if(!estado) {
     //La luz esta apagada, quiero encenderla
-    $("#respuesta").load("toggle.php", {encender: true, tipo: tipo }, function() {
+    $("#respuesta").load("toggle.php", {estado: 'prender', tipo: tipo }, function() {
         paintUi(true, tipo);
         return true;
-    });
+      }
+    );
   } else {
     //La luz esta encendida, quiero apagarla
-    $("#respuesta").load("toggle.php", {apagar: true, tipo: tipo }, function() {
+    $("#respuesta").load("toggle.php", {estado: 'apagar', tipo: tipo }, function() {
         paintUi(false, tipo);
         return false;
-    });
+      }
+    );
   }
 }
 
@@ -66,7 +68,7 @@ $(function () {
   });
 
   $('#switchLuz').on(pointerEvent, function() {
-      if(toggleEstado(estadoLuz, 'luz')) {
+      if(toggleEstado(estadoLuz, 'luz')===true) {
         estadoLuz = true;
       } else {
         estadoLuz = false;
@@ -74,7 +76,7 @@ $(function () {
   });
 
   $('#switchAudio').on(pointerEvent, function() {
-      if(toggleEstado(estadoAudio, 'audio')) {
+      if(toggleEstado(estadoAudio, 'audio')===true) {
         estadoAudio = true;
       } else {
         estadoAudio = false;
