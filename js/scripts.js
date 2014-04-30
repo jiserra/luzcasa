@@ -32,7 +32,7 @@ function toggleEstado(estado, tipo) {
     });
   } else {
     //La luz esta encendida, quiero apagarla
-    $("#respuesta").load("toggle.php", {apagar: true }, function() {
+    $("#respuesta").load("toggle.php", {apagar: true, tipo: tipo }, function() {
         paintUi(false, tipo);
         return false;
     });
