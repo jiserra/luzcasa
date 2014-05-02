@@ -11,10 +11,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-  <?php
-    exec("gpio -g mode 18 out");
-    exec("gpio -g mode 23 out");
-  ?>
   <div class="contenedor">
     <div id="luz" class="luz"></div>
     <button id="switchLuz" class="switch">|</button>
