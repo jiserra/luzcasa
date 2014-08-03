@@ -3,8 +3,10 @@
 content=$(<automatic.flag)
 
 if [ $content -eq 1 ]
+then
   phone=$( hcitool name 04:DB:56:2C:EC:36 )
   if [ $phone -eq 1 ]
+  then
     gpio -g mode 23 out
     gpio -g mode 23 out
     echo 0 > automatic.flag
