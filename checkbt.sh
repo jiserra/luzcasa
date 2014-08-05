@@ -1,14 +1,22 @@
 #!/bin/bash
 
-content=$(<automatic.flag)
+content=$(<manual.flag)
 
-if [ $content -eq 1 ]
-then
+while :
+do
+  if [ $content -eq 1 ]
+  then
+    ./setcron.sh
+    echo 0 > manual.flag
+    break
+  fi
   phone=$( hcitool name 04:DB:56:2C:EC:36 )
-  if [ $phone -eq 1 ]
+  if [ "$phone" ]
   then
     gpio -g mode 23 out
-    gpio -g mode 23 out
-    echo 0 > automatic.flag
+    gpio -g write 23 0
+    ./setcron.sh
+    break
   fi
-fi
+  sleep 5
+done
