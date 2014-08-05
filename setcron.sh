@@ -22,7 +22,7 @@ mdq.horizon = '-0:34'
 
 sunset = mdq.next_setting   (ephem.Sun())
 
-EndDate = datetime.datetime.strptime(str(sunset), "%y/%m/%d %H:%M:%S")
+EndDate = datetime.datetime.strptime(str(sunset), "%Y/%m/%d %H:%M:%S")
 
 month = int(EndDate.strftime('%m'))
 day = int(EndDate.strftime('%d'))
@@ -30,7 +30,7 @@ hours = int(EndDate.strftime('%H'))
 minutes = int(EndDate.strftime('%M'))
 
 # Generate time for tomorrow
-cronjob = "%d %d %d %d * /var/www/luzcasa/checkbt.sh" % (minutes, hours, day, month)
+cronjob = "%d %d %d %d * /home/xbian/BT/checkbt.sh" % (minutes, hours, day, month)
 
 # print cronjob
 
