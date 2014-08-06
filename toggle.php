@@ -1,5 +1,11 @@
 <?php
 
+function manual($value) {
+  $fp = fopen('/home/xbian/BT/manual.flag', 'w');
+  fwrite($fp, $value);
+  fclose($fp);
+}
+
 if($_POST['tipo'] == 'luz') {
   $pin = '23';
 } else {
@@ -12,12 +18,12 @@ exec("gpio -g mode $pin out");
 if($_POST['estado']=='prender') {
   exec("gpio -g write $pin 0");
   if($pin == '23') {
-    exec("echo 1 > /home/xbian/BT/manual.flag");
+    manual('1');
   }
 } else {
   exec("gpio -g write $pin 1");
   if($pin == '23') {
-    exec("echo 0 > /home/xbian/BT/manual.flag");
+    manual('0');
   }
 }
 
