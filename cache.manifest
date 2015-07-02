@@ -1,8 +1,6 @@
 CACHE MANIFEST
   # v.11.0
 
-  css/styles.css
-  js/scripts.js
   js/jquery.min.js
 
 NETWORK:
