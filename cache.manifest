@@ -1,7 +1,26 @@
 CACHE MANIFEST
-  # v.11.0
-
+  # v.11.1
+  app.coffee
+  bower_components/reset-scss/.bower.json
+  bower_components/reset-scss/bower.json
+  bower_components/reset-scss/README.md
+  bower_components/reset-scss/reset.scss
+  css/styles.css
+  framer/.framer.modules.js.hash
+  framer/coffee-script.js
+  framer/config.json
+  framer/framer.generated.js
+  framer/framer.init.js
+  framer/framer.js
+  framer/framer.js.map
+  framer/framer.modules.js
+  framer/images/background.png
+  framer/mirror.css
+  framer/style.css
+  framer/version
   js/jquery.min.js
+  modules/myModule.coffee
+  touch-icon-iphone-retina.png
 
 NETWORK:
   *
